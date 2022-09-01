@@ -1,8 +1,8 @@
 /// <reference types="node" />
 /// <reference types="redis" />
 
-import {EventEmitter} from 'events';
-import {ClientOpts, RedisClient} from 'redis';
+import { EventEmitter } from 'events';
+import { ClientOpts, RedisClient } from 'redis';
 
 declare class BeeQueue<T = any> extends EventEmitter {
   name: string;
@@ -80,6 +80,8 @@ declare class BeeQueue<T = any> extends EventEmitter {
 
   destroy(): Promise<void>;
   destroy(cb: () => void): void;
+
+  saveAll(jobs: BeeQueue.Job<T>[]): Promise<Map<BeeQueue.Job<T>, Error>>;
 }
 
 declare namespace BeeQueue {
